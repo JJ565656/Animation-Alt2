@@ -1,99 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Neon Lava Lamp — 10 Blobs</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap" rel="stylesheet">
-  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap" rel="stylesheet" />
+
   <style>
-  body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: #F5F1EA;
-}
-
-/* Centered text above blobs */
-  .Command {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  pointer-events: none;
-}
-
-  .Command h1 {
-  font-family: "Alan Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;          /* choose any between 300–900 */
-  font-style: normal;
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
-  color: #3E3A39;
-  background: transparent;
-  text-align: center;
-}
-
-/* SVG + blobs */
-  svg {
-  width: 100vw;
-  height: 100vh;
-  backface-visibility: hidden;
-  transform: translateZ(0); /* triggers GPU layer */
-}
-
-  .blob {
-  fill: url(#neonGradient);
-  animation: drift 25s ease-in-out infinite alternate;
-  opacity: 0.9;
-  will-change: transform; /* preps GPU optimization */
-  transform: translate3d(0, 0, 0); /* avoid CPU layout thrash */
-}
-
-  .blob:nth-child(1)  { animation-delay: 0s;  animation-duration: 24s; }
-.blob:nth-child(2)  { animation-delay: 2s;  animation-duration: 26s; }
-.blob:nth-child(3)  { animation-delay: 4s;  animation-duration: 25s; }
-.blob:nth-child(4)  { animation-delay: 6s;  animation-duration: 28s; }
-.blob:nth-child(5)  { animation-delay: 8s;  animation-duration: 24s; }
-.blob:nth-child(6)  { animation-delay: 10s; animation-duration: 27s; }
-.blob:nth-child(7)  { animation-delay: 12s; animation-duration: 25s; }
-.blob:nth-child(8)  { animation-delay: 14s; animation-duration: 26s; }
-.blob:nth-child(9)  { animation-delay: 16s; animation-duration: 24s; }
-.blob:nth-child(10) { animation-delay: 18s; animation-duration: 27s; }
-
-@keyframes drift {
-  0%   { transform: translate3d(0px, 0px, 0) scale(1); }
-  25%  { transform: translate3d(300px, 200px, 0) scale(1.1); }
-  50%  { transform: translate3d(-200px, 200px, 0) scale(0.95); }
-  75%  { transform: translate3d(200px, -180px, 0) scale(1.05); }
-  100% { transform: translate3d(-150px, -120px, 0) scale(1); }
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #F5F1EA;
     }
-  
-  @media (max-width: 768px) {
-  svg {
-    contain: layout paint size style;
-  }
-  }
 
+    .Command {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .Command h1 {
+      font-family: "Alan Sans", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 500;
+      font-style: normal;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      color: #3E3A39;
+      background: transparent;
+      text-align: center;
+    }
+
+    svg {
+      width: 100vw;
+      height: 100vh;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+    }
+
+    .blob {
+      fill: url(#neonGradient);
+      animation: drift 25s ease-in-out infinite alternate;
+      opacity: 0.9;
+      will-change: transform, opacity;
+      transform: translate3d(0, 0, 0);
+    }
+
+    /* Organic delay/duration for each blob */
+    .blob:nth-child(1)  { animation-delay: 0s;  animation-duration: 24s; }
+    .blob:nth-child(2)  { animation-delay: 2s;  animation-duration: 26s; }
+    .blob:nth-child(3)  { animation-delay: 4s;  animation-duration: 25s; }
+    .blob:nth-child(4)  { animation-delay: 6s;  animation-duration: 28s; }
+    .blob:nth-child(5)  { animation-delay: 8s;  animation-duration: 24s; }
+    .blob:nth-child(6)  { animation-delay: 10s; animation-duration: 27s; }
+    .blob:nth-child(7)  { animation-delay: 12s; animation-duration: 25s; }
+    .blob:nth-child(8)  { animation-delay: 14s; animation-duration: 26s; }
+    .blob:nth-child(9)  { animation-delay: 16s; animation-duration: 24s; }
+    .blob:nth-child(10) { animation-delay: 18s; animation-duration: 27s; }
+
+    @keyframes drift {
+      0%   { transform: translate3d(0px, 0px, 0) scale(1); }
+      25%  { transform: translate3d(300px, 200px, 0) scale(1.1); }
+      50%  { transform: translate3d(-200px, 200px, 0) scale(0.95); }
+      75%  { transform: translate3d(200px, -180px, 0) scale(1.05); }
+      100% { transform: translate3d(-150px, -120px, 0) scale(1); }
+    }
+
+    /* Accessibility: reduce animation if user prefers reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .blob {
+        animation: none !important;
+        opacity: 0.6;
+      }
+    }
   </style>
 </head>
+
 <body>
   <div class="Command">
-     <h1>
-       Touch here
-    </h1>
+    <h1>Touch here</h1>
   </div>
+
   <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
     <defs>
-      <!-- Goo filter for merging -->
       <filter id="goo">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="40" result="blur" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="25" result="blur" />
         <feColorMatrix in="blur" mode="matrix"
           values="1 0 0 0 0  
                   0 1 0 0 0  
@@ -102,10 +101,9 @@
         <feBlend in="SourceGraphic" in2="goo" />
       </filter>
 
-      <!-- Neon gradient -->
       <radialGradient id="neonGradient" cx="30%" cy="30%" r="70%">
-        <stop offset="0%" stop-color="#d7FA1E"/>
-        <stop offset="100%" stop-color="#FAF9F6"/>
+        <stop offset="0%" stop-color="#d7FA1E" />
+        <stop offset="100%" stop-color="#FAF9F6" />
       </radialGradient>
     </defs>
 
