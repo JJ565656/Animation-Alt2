@@ -3,47 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Neon Lava Lamp — 10 Blobs</title>
+  <title>Neon Lava Lamp — Final</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap" rel="stylesheet" />
 
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       overflow: hidden;
       background: #FAF9F6;
     }
 
-    .Command {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 10;
-      pointer-events: none;
-    }
-
-    .Command h1 {
-      font-family: "Alan Sans", sans-serif;
-      font-optical-sizing: auto;
-      font-weight: 500;
-      font-style: normal;
-      font-size: clamp(1.5rem, 3vw, 2.5rem);
-      color: #3E3A39;
-      background: transparent;
-      text-align: center;
-    }
-
     svg {
-      width: 100vw;
-      height: 100vh;
-      backface-visibility: hidden;
-      transform: translateZ(0);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #FAF9F6;
     }
 
     .blob {
@@ -51,74 +33,94 @@
       animation: drift 25s ease-in-out infinite alternate;
       opacity: 0.9;
       will-change: transform, opacity;
-      transform: translate3d(0, 0, 0);
     }
 
-    /* Organic delay/duration for each blob */
-    .blob:nth-child(1)  { animation-delay: 0s;  animation-duration: 24s; }
-    .blob:nth-child(2)  { animation-delay: 2s;  animation-duration: 26s; }
-    .blob:nth-child(3)  { animation-delay: 4s;  animation-duration: 25s; }
-    .blob:nth-child(4)  { animation-delay: 6s;  animation-duration: 28s; }
-    .blob:nth-child(5)  { animation-delay: 8s;  animation-duration: 24s; }
-    .blob:nth-child(6)  { animation-delay: 10s; animation-duration: 27s; }
-    .blob:nth-child(7)  { animation-delay: 12s; animation-duration: 25s; }
-    .blob:nth-child(8)  { animation-delay: 14s; animation-duration: 26s; }
-    .blob:nth-child(9)  { animation-delay: 16s; animation-duration: 24s; }
-    .blob:nth-child(10) { animation-delay: 18s; animation-duration: 27s; }
+    /* varied timing for natural motion */
+    .blob:nth-child(1){animation-delay:0s;animation-duration:24s;}
+    .blob:nth-child(2){animation-delay:2s;animation-duration:26s;}
+    .blob:nth-child(3){animation-delay:4s;animation-duration:25s;}
+    .blob:nth-child(4){animation-delay:6s;animation-duration:28s;}
+    .blob:nth-child(5){animation-delay:8s;animation-duration:24s;}
+    .blob:nth-child(6){animation-delay:10s;animation-duration:27s;}
+    .blob:nth-child(7){animation-delay:12s;animation-duration:25s;}
+    .blob:nth-child(8){animation-delay:14s;animation-duration:26s;}
+    .blob:nth-child(9){animation-delay:16s;animation-duration:24s;}
+    .blob:nth-child(10){animation-delay:18s;animation-duration:27s;}
 
     @keyframes drift {
-      0%   { transform: translate3d(0px, 0px, 0) scale(1); }
-      25%  { transform: translate3d(300px, 200px, 0) scale(1.1); }
-      50%  { transform: translate3d(-200px, 200px, 0) scale(0.95); }
-      75%  { transform: translate3d(200px, -180px, 0) scale(1.05); }
-      100% { transform: translate3d(-150px, -120px, 0) scale(1); }
+      0%   { transform: translate3d(0,0,0) scale(1); }
+      25%  { transform: translate3d(300px,200px,0) scale(1.1); }
+      50%  { transform: translate3d(-200px,200px,0) scale(0.95); }
+      75%  { transform: translate3d(200px,-180px,0) scale(1.05); }
+      100% { transform: translate3d(-150px,-120px,0) scale(1); }
     }
 
-    /* Accessibility: reduce animation if user prefers reduced motion */
+    .Command {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .Command h1 {
+      font-family: "Alan Sans", sans-serif;
+      font-weight: 500;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      color: #3E3A39;
+      text-align: center;
+      background: transparent;
+    }
+
+    /* subtle noise to remove color banding */
+    .noise {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=');
+      opacity: 0.06;
+      z-index: 4;
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      .blob {
-        animation: none !important;
-        opacity: 0.6;
-      }
+      .blob { animation: none !important; opacity: 0.6; }
     }
   </style>
 </head>
 
 <body>
-  <div class="Command">
-    <h1>Touch here</h1>
-  </div>
+  <div class="Command"><h1>Touch here</h1></div>
 
-  <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+  <svg viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <filter id="goo">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="25" result="blur" />
-        <feColorMatrix in="blur" mode="matrix"
-          values="1 0 0 0 0  
-                  0 1 0 0 0  
-                  0 0 1 0 0  
-                  0 0 0 30 -15" result="goo" />
-        <feBlend in="SourceGraphic" in2="goo" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="40" result="blur" />
+        <feBlend in="SourceGraphic" in2="blur" mode="normal" />
       </filter>
 
-      <radialGradient id="neonGradient" cx="30%" cy="30%" r="70%">
-        <stop offset="0%" stop-color="#d7FA1E" />
+      <radialGradient id="neonGradient" cx="40%" cy="35%" r="75%">
+        <stop offset="0%" stop-color="#E9FF5E" />
+        <stop offset="80%" stop-color="#FAF9F6" />
         <stop offset="100%" stop-color="#FAF9F6" />
       </radialGradient>
     </defs>
 
     <g filter="url(#goo)">
-      <circle class="blob" cx="200" cy="200" r="90" />
-      <circle class="blob" cx="400" cy="300" r="110" />
-      <circle class="blob" cx="600" cy="250" r="80" />
-      <circle class="blob" cx="500" cy="450" r="70" />
-      <circle class="blob" cx="300" cy="400" r="100" />
-      <circle class="blob" cx="700" cy="350" r="90" />
-      <circle class="blob" cx="150" cy="300" r="120" />
-      <circle class="blob" cx="550" cy="150" r="75" />
-      <circle class="blob" cx="650" cy="500" r="95" />
-      <circle class="blob" cx="250" cy="500" r="85" />
+      <circle class="blob" cx="200" cy="200" r="120" />
+      <circle class="blob" cx="500" cy="300" r="150" />
+      <circle class="blob" cx="800" cy="250" r="100" />
+      <circle class="blob" cx="600" cy="500" r="130" />
+      <circle class="blob" cx="350" cy="400" r="140" />
+      <circle class="blob" cx="900" cy="350" r="120" />
+      <circle class="blob" cx="150" cy="350" r="160" />
+      <circle class="blob" cx="700" cy="150" r="110" />
+      <circle class="blob" cx="850" cy="550" r="135" />
+      <circle class="blob" cx="300" cy="550" r="115" />
     </g>
   </svg>
+
+  <div class="noise"></div>
 </body>
 </html>
